@@ -1,34 +1,34 @@
 {
-  "name": "n8n-nodes-<...>",
+  "name": "@wirgen/n8n-nodes-syno-file-station",
   "version": "0.1.0",
-  "description": "",
+  "description": "n8n node to interact with Synology File Station",
   "keywords": [
-    "n8n-community-node-package"
+    "n8n-community-node-package",
+    "synology"
   ],
   "license": "MIT",
-  "homepage": "",
+  "homepage": "https://github.com/wirgen/n8n-nodes-syno-file-station",
   "author": {
-    "name": "",
-    "email": ""
+    "name": "Dzianis Nikifarau",
+    "email": "dzianis@wirgen.by"
   },
   "repository": {
     "type": "git",
-    "url": "https://github.com/<...>/n8n-nodes-<...>.git"
+    "url": "https://github.com/wirgen/n8n-nodes-syno-file-station.git"
   },
   "engines": {
-    "node": ">=18.10",
-    "pnpm": ">=9.1"
+    "node": ">=20.15",
+    "yarn": ">=1.22.22"
   },
-  "packageManager": "pnpm@9.1.4",
+  "packageManager": "yarn@1.22.22",
   "main": "index.js",
   "scripts": {
-    "preinstall": "npx only-allow pnpm",
     "build": "tsc && gulp build:icons",
     "dev": "tsc --watch",
     "format": "prettier nodes credentials --write",
     "lint": "eslint nodes credentials package.json",
     "lintfix": "eslint nodes credentials package.json --fix",
-    "prepublishOnly": "pnpm build && pnpm lint -c .eslintrc.prepublish.js nodes credentials package.json"
+    "prepublishOnly": "npm run build && npm run lint -c .eslintrc.prepublish.js nodes credentials package.json"
   },
   "files": [
     "dist"
@@ -36,12 +36,10 @@
   "n8n": {
     "n8nNodesApiVersion": 1,
     "credentials": [
-      "dist/credentials/ExampleCredentialsApi.credentials.js",
-      "dist/credentials/HttpBinApi.credentials.js"
+      "dist/credentials/SynoFileStationApi.credentials.js"
     ],
     "nodes": [
-      "dist/nodes/ExampleNode/ExampleNode.node.js",
-      "dist/nodes/HttpBin/HttpBin.node.js"
+      "dist/nodes/SynoFileStation/SynoFileStation.node.js"
     ]
   },
   "devDependencies": {
@@ -55,5 +53,8 @@
   },
   "peerDependencies": {
     "n8n-workflow": "*"
+  },
+  "dependencies": {
+    "otpauth": "^9.3.2"
   }
 }
