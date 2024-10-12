@@ -135,11 +135,21 @@ export class SynoFileStation implements INodeType {
 							)
 						}
 
-						const response = await this.helpers.requestWithAuthentication.call(this, 'synoFileStationApi', {
+						const credentials = await this.getCredentials('synoFileStationApi')
+						credentials.sid = ''
+
+						const response = await this.helpers.httpRequestWithAuthentication.call(this, 'synoFileStationApi', {
 							url: `${url.endsWith('/') ? url.slice(0, -1) : url}/webapi/entry.cgi`,
 							method: 'POST',
 							body,
 							json: true,
+						}, {
+							credentialsDecrypted: {
+								id: '',
+								name: '',
+								type: '',
+								data: credentials,
+							}
 						})
 
 						if (response.success) {
