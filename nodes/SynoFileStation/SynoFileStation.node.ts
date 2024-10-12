@@ -135,9 +135,7 @@ export class SynoFileStation implements INodeType {
 							)
 						}
 
-						console.log(body)
-
-						const response = await this.helpers.httpRequestWithAuthentication.call(this, 'synoFileStationApi', {
+						const response = await this.helpers.requestWithAuthentication.call(this, 'synoFileStationApi', {
 							url: `${url.endsWith('/') ? url.slice(0, -1) : url}/webapi/entry.cgi`,
 							method: 'POST',
 							body,
